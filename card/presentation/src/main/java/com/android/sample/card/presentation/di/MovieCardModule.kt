@@ -16,7 +16,7 @@ class MovieCardModule {
     fun provideCoroutineScope(): CoroutineScope = PresentationCoroutineScope()
 
     @Provides
-    fun provideStateFactory(): StateFactory = InMemoryStateFactory()
+    fun provideStateFactory(): StateFactory = InMemoryStateFactory
 
     @Provides
     fun provideMovieCardStateMapper(): MovieCardStateMapper = ParcelableMovieCardStateMapper()

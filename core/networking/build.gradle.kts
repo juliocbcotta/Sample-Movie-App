@@ -1,9 +1,23 @@
+import java.util.Properties
+
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
     id("com.google.devtools.ksp")
 }
+android {
+    buildFeatures {
+        buildConfig = true
+    }
+    defaultConfig {
+        val properties = Properties()
 
+        properties.load(project.rootProject.file("local.properties").bufferedReader())
+        val apiKey = properties["apiKey"].toString()
+        project.logger.lifecycle("APIKEY: $apiKey")
+        buildConfigField("String", "API_KEY", """"$apiKey"""".trimIndent())
+    }
+}
 android {
     namespace = "com.android.sample.core.networking"
     compileSdk = 34
