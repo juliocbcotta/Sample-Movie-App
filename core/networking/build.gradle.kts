@@ -12,9 +12,8 @@ android {
     defaultConfig {
         val properties = Properties()
 
-        properties.load(project.rootProject.file("local.properties").bufferedReader())
+        properties.load(project.rootProject.file("api.properties").bufferedReader())
         val apiKey = properties["apiKey"].toString()
-        project.logger.lifecycle("APIKEY: $apiKey")
         buildConfigField("String", "API_KEY", """"$apiKey"""".trimIndent())
     }
 }
