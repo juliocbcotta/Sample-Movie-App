@@ -46,7 +46,7 @@ class SearchViewModel @Inject constructor() : ViewModel() {
     val state = MutableStateFlow(searchState)
 
     fun onEvent(event: SearchEvent) {
-        when (event) {
+        searchState = when (event) {
             is OnSubmitQuery -> {
                 val list = searchState.tags.toMutableList()
                 if (list.none { it.query == searchState.query }) {
@@ -57,27 +57,29 @@ class SearchViewModel @Inject constructor() : ViewModel() {
                             deletable = true
                         )
                     )
-                    searchState = searchState.copy(
+                    searchState.copy(
                         active = false,
                         selectedTag = list.first(),
                         tags = list
                     )
+                } else {
+                    searchState
                 }
             }
 
             is OnQueryChange -> {
-                searchState = searchState.copy(query = event.query)
+                searchState.copy(query = event.query)
             }
 
             is OnActiveChange -> {
-                searchState = searchState.copy(active = event.active)
+                searchState.copy(active = event.active)
             }
 
             is OnDeleteTag -> {
                 val index = searchState.tags.indexOf(event.tag)
                 val list = searchState.tags.toMutableList()
                 list.removeAt(index)
-                searchState = searchState.copy(selectedTag = event.tag, tags = list)
+                searchState.copy(selectedTag = event.tag, tags = list)
             }
 
             is OnToggleTag -> {
@@ -87,7 +89,7 @@ class SearchViewModel @Inject constructor() : ViewModel() {
                 } else {
                     event.tag.query
                 }
-                searchState = searchState.copy(
+                searchState.copy(
                     query = query,
                     active = false,
                     selectedTag = event.tag,
