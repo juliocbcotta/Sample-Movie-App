@@ -34,7 +34,7 @@ gradlePlugin {
     plugins {
         register("LibraryPlugin") {
             id = "com.sample.android.library"
-            implementationClass = "com.android.sample.app.plugins.LibraryPlugin"
+            implementationClass = "com.android.sample.app.plugins.AndroidstatLibraryPlugin"
         }
 
     }
