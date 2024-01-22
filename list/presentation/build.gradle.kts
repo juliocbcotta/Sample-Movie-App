@@ -1,5 +1,6 @@
 plugins {
     id("com.sample.android.library")
+    id("com.sample.compose.android.library")
     id("org.jetbrains.kotlin.android")
     id("kotlin-parcelize")
     id("com.google.devtools.ksp")

@@ -32,10 +32,16 @@ tasks {
 
 gradlePlugin {
     plugins {
-        register("LibraryPlugin") {
+        register("AndroidLibraryPlugin") {
             id = "com.sample.android.library"
-            implementationClass = "com.android.sample.app.plugins.AndroidstatLibraryPlugin"
+            implementationClass = "com.android.sample.app.plugins.AndroidLibraryPlugin"
         }
+
+        register("ComposeAndroidLibraryPlugin") {
+            id = "com.sample.compose.android.library"
+            implementationClass = "com.android.sample.app.plugins.ComposeAndroidLibraryPlugin"
+        }
+
 
     }
 }
