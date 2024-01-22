@@ -34,6 +34,7 @@ import com.android.sample.search.presentation.SearchEvent.OnQueryChange
 import com.android.sample.search.presentation.SearchEvent.OnSubmitQuery
 import com.android.sample.search.presentation.SearchEvent.OnToggleTag
 import com.android.sample.search.presentation.di.DaggerSearchComponent
+import com.android.sample.search.presentation.di.SearchComponent
 import com.veepee.vpcore.route.link.compose.ComposableFor
 
 @Composable
@@ -43,7 +44,7 @@ fun SearchScreenContainer(modifier: Modifier) {
         val viewModel: SearchViewModel = composeViewModel(
             key = "Search VM key",
             viewModelFactory = {
-                componentStore.getOrCreate("search component key") {
+                componentStore.getOrCreate(SearchComponent::class) {
                     DaggerSearchComponent.builder().build()
                 }.viewModel
             }

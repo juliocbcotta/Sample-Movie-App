@@ -48,7 +48,7 @@ fun ProvideVMScopedPresenterStore(
 }
 
 @Composable
-fun ProvidePresenterStore(presenterStore: Store<Presenter>, content: @Composable () -> Unit) {
+fun ProvidePresenterStore(presenterStore: Store<String, Presenter>, content: @Composable () -> Unit) {
     CompositionLocalProvider(LocalPresenterStore provides presenterStore) {
         content()
     }

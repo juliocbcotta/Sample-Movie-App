@@ -4,11 +4,11 @@ import androidx.compose.runtime.compositionLocalOf
 import com.android.sample.core.presentation.presenter.Presenter
 import com.android.sample.core.presentation.store.Store
 
-val LocalPresenterStore = compositionLocalOf<Store<Presenter>> {
+val LocalPresenterStore = compositionLocalOf<Store<String, Presenter>> {
     PresenterStore(100)
 }
 
-class PresenterStore(capacity: Int) : Store<Presenter>(
+class PresenterStore(capacity: Int) : Store<String, Presenter>(
     map = createLRUMap(maxEntries = capacity,
         onRemovalOf = { entry ->
             entry.value.onClear()

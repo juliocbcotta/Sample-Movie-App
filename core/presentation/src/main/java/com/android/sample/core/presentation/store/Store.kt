@@ -1,10 +1,10 @@
 package com.android.sample.core.presentation.store
 
-abstract class Store<T>(
-    protected val map: MutableMap<String, T> = mutableMapOf()
+abstract class Store<K, V>(
+    protected val map: MutableMap<K, V> = mutableMapOf()
 ) {
     @Suppress("UNCHECKED_CAST")
-    open fun <T1 : T> getOrCreate(key: String, create: () -> T1): T1 {
+    open fun <T1 : V> getOrCreate(key: K, create: () -> T1): T1 {
         return map.getOrPut(key) { create() } as T1
     }
 
