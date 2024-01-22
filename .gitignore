@@ -8,3 +8,4 @@
 .externalNativeBuild
 .cxx
 api.properties
+/plugins/convention/build/
