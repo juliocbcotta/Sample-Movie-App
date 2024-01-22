@@ -1,13 +1,10 @@
 plugins {
-    id("com.sample.android.library")
-    id("org.jetbrains.kotlin.android")
+    id("com.sample.kotlin.android.library")
+
 }
 
 android {
     namespace = "com.android.sample.list.abstraction"
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
 }
 
 dependencies {

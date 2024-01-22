@@ -1,15 +1,11 @@
 plugins {
-    id("com.sample.android.library")
-    id("org.jetbrains.kotlin.android")
+    id("com.sample.kotlin.android.library")
     id("com.google.devtools.ksp")
 }
 
 android {
     namespace = "com.android.sample.card.data"
 
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
     buildFeatures {
         buildConfig = true
     }

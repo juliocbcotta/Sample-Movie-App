@@ -1,14 +1,10 @@
 plugins {
-    id("com.sample.android.library")
-    id("org.jetbrains.kotlin.android")
+    id("com.sample.kotlin.android.library")
     id("com.google.devtools.ksp")
 }
 
 android {
     namespace = "com.android.sample.list.data"
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
 }
 android {
     buildFeatures {

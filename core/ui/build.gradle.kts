@@ -1,15 +1,10 @@
 plugins {
-    id("com.sample.android.library")
+    id("com.sample.kotlin.android.library")
     id("com.sample.compose.android.library")
-    id("org.jetbrains.kotlin.android")
 }
 
 android {
     namespace = "com.android.sample.core.ui"
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
-
 }
 
 dependencies {

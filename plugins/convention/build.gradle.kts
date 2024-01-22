@@ -19,6 +19,7 @@ tasks.withType<KotlinCompile>().configureEach {
 }
 
 dependencies {
+    compileOnly("org.jetbrains.kotlin:kotlin-gradle-plugin")
     compileOnly(libs.android.gradlePlugin)
     compileOnly(libs.ksp.gradlePlugin)
 }
@@ -33,13 +34,18 @@ tasks {
 gradlePlugin {
     plugins {
         register("AndroidLibraryPlugin") {
-            id = "com.sample.android.library"
-            implementationClass = "com.android.sample.app.plugins.AndroidLibraryPlugin"
+            id = "com.sample.kotlin.android.library"
+            implementationClass = "com.android.sample.app.plugins.KotlinAndroidLibraryPlugin"
         }
 
         register("ComposeAndroidLibraryPlugin") {
             id = "com.sample.compose.android.library"
             implementationClass = "com.android.sample.app.plugins.ComposeAndroidLibraryPlugin"
+        }
+
+        register("KotlinJVMLibraryPlugin") {
+            id = "com.sample.kotlin.jvm.library"
+            implementationClass = "com.android.sample.app.plugins.KotlinJvmLibrary"
         }
 
 
