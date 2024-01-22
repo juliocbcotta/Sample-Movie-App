@@ -56,9 +56,12 @@ fun MovieCardScreen(parameter: MovieCardParameter, modifier: Modifier) {
         val store = LocalDaggerComponentStore.current
         MovieCardScreen(parameter.toMovieDetail(),
             assistedComposeViewModel("VM${parameter.imdbId}") { stateFactory ->
-                store.getOrCreate(MovieCardComponent::class) {
+                val component = store.getOrCreate(MovieCardComponent::class) {
                     DaggerMovieCardComponent.builder().build()
-                }.viewModelFactory.create(parameter.imdbId, stateFactory)
+                }
+                component.viewModelFactory.create(
+                    component.presenterFactory.create(parameter.imdbId, stateFactory)
+                )
             })
     }
 }

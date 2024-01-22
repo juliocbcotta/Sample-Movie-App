@@ -17,7 +17,6 @@ dependencies {
     implementation(project(":core:coroutines"))
 
     implementation(project(":list:data"))
-    implementation(project(":list:domain"))
     implementation(project(":list:abstraction"))
 
     implementation(project(":card:router"))

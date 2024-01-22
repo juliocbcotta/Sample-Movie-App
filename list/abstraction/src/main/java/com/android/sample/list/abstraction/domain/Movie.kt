@@ -1,4 +1,4 @@
-package com.android.sample.list.abstraction
+package com.android.sample.list.abstraction.domain
 
 interface Movie {
     val title: String

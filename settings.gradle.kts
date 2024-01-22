@@ -35,7 +35,6 @@ include(":core:presentation")
 include(":list:presentation")
 include(":list:abstraction")
 include(":list:tracking")
-include(":list:domain")
 include(":list:data")
 include(":list:router")
 
