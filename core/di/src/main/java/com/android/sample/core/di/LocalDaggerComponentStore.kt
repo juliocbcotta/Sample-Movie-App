@@ -6,12 +6,13 @@ import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.runtime.remember
 import com.android.sample.core.presentation.store.Store
+import kotlin.reflect.KClass
 
 interface DaggerComponent
 
 val LocalDaggerComponentStore = compositionLocalOf { DaggerComponentStore() }
 
-class DaggerComponentStore : Store<DaggerComponent>()
+class DaggerComponentStore : Store<KClass<out DaggerComponent>, DaggerComponent>()
 
 @Composable
 fun ProvideDaggerComponentStore(key: String, content: @Composable () -> Unit) {

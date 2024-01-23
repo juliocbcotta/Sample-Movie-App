@@ -1,6 +1,6 @@
 package com.android.sample.list.data.remote.models
 
-import com.android.sample.list.abstraction.Movie
+import com.android.sample.list.abstraction.domain.Movie
 import com.google.gson.annotations.SerializedName
 
 data class MovieResponse(

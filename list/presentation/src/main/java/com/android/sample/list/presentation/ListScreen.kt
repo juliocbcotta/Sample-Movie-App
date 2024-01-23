@@ -17,11 +17,17 @@ import com.android.sample.card.router.ListScreenParameter
 import com.android.sample.card.router.MovieCardParameter
 import com.android.sample.card.router.MovieCardScreenLink
 import com.android.sample.core.di.ProvideDaggerComponentStore
+import com.android.sample.core.di.presenter.InMemoryStateFactory
 import com.android.sample.core.di.presenter.ProvidePresenterStore
 import com.android.sample.core.di.presenter.ProvideVMScopedPresenterStore
+import com.android.sample.core.di.presenter.assistedPresenter
 import com.android.sample.core.di.viewmodel.assistedComposeViewModel
-import com.android.sample.list.abstraction.Movie
+import com.android.sample.list.abstraction.domain.Movie
+import com.android.sample.list.abstraction.presentation.ListPresenter
+import com.android.sample.list.abstraction.presentation.ListState
 import com.android.sample.list.presentation.di.DaggerListComponent
+import com.android.sample.list.presentation.model.ParcelableListEvent.ParcelableOnSubmitEvent
+import com.android.sample.list.presentation.model.ParcelableMovieQuery
 import com.veepee.vpcore.route.link.compose.ComposableFor
 
 @Immutable
@@ -30,7 +36,23 @@ data class MovieTag(val query: String)
 @Composable
 fun ListScreenContainer(modifier: Modifier, parameter: ListScreenParameter) {
     Box(modifier) {
-        ListScreen(parameter.toMovieTag())
+        ListScreen(parameter.toMovieTag(),
+            assistedComposeViewModel("ListVM") { stateFactory ->
+                val component = DaggerListComponent.builder().build()
+                component.viewModelFactory.create(
+                    component.presenterFactory.create(stateFactory)
+                )
+            })
+    }
+}
+
+@Composable
+fun ListScreenContainer2(modifier: Modifier, parameter: ListScreenParameter) {
+    Box(modifier) {
+        ListScreen(parameter.toMovieTag(),
+            assistedPresenter {
+                DaggerListComponent.create().presenterFactory.create(InMemoryStateFactory)
+            })
     }
 }
 
@@ -41,17 +63,15 @@ private fun ListScreenParameter.toMovieTag(): MovieTag {
 @Composable
 fun ListScreen(
     selectedTag: MovieTag,
-    viewModel: ListViewModel = assistedComposeViewModel("ListVM") { stateFactory ->
-        DaggerListComponent.create().viewModelFactory.create(stateFactory)
-    }
+    viewModel: ListPresenter
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
     LaunchedEffect(selectedTag) {
-        viewModel.submitQuery(selectedTag.query)
+        viewModel.onEvent(ParcelableOnSubmitEvent(selectedTag.toParcelableQuery()))
     }
     when (val s = state) {
-        ListState.Error -> Text("Fuuuuuuuu, some network error or some shit")
-        ListState.Loading -> Loading()
+        is ListState.Error -> Text("Fuuuuuuuu, some network error or some shit")
+        is ListState.Loading -> Loading()
         is ListState.Success -> {
             if (s.result.isEmpty()) {
                 Text("No movies found for your query")
@@ -85,6 +105,10 @@ fun ListScreen(
             }
         }
     }
+}
+
+private fun MovieTag.toParcelableQuery(): ParcelableMovieQuery {
+    return ParcelableMovieQuery(query)
 }
 
 private fun Movie.toMovieCardParameter(): MovieCardParameter {

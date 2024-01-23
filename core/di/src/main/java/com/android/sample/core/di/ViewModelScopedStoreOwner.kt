@@ -4,6 +4,6 @@ import androidx.lifecycle.ViewModel
 import com.android.sample.core.presentation.store.Store
 import java.io.Closeable
 
-class ViewModelScopedStoreOwner<T>(val store: Store<T>) :
+class ViewModelScopedStoreOwner<K, V>(val store: Store<K, V>) :
     ViewModel(Closeable { store.clear() })
 

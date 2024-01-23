@@ -1,7 +1,6 @@
 package com.android.sample.card.presentation
 
-import com.android.sample.card.data.remote.MovieDetailService
-import com.android.sample.core.coroutines.ClosableCoroutineScope
+import com.android.sample.card.data.remote.OMDBMovieDetailService
 import com.android.sample.core.coroutines.runSuspendCatching
 import com.android.sample.core.presentation.state.factory.StateFactory
 import com.android.sample.list.abstraction.presentation.MovieCardEvent
@@ -30,8 +29,9 @@ class MovieCardPresenterImpl @AssistedInject constructor(
     @Assisted private val stateFactory: StateFactory,
     private val stateMapper: MovieCardStateMapper,
     private val scope: CoroutineScope,
-    private val service: MovieDetailService,
+    private val service: OMDBMovieDetailService,
 ) : MovieCardPresenter {
+
     private val _state = stateFactory.create<MovieCardState>(imdbId, stateMapper.initial)
 
     override val state = _state.value

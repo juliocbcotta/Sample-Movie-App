@@ -15,7 +15,7 @@ object MovieCardScreenNameMapper : ComposableNameMapper<MovieCardScreenName> {
     @Composable
     override fun Map(link: ComposableLink<MovieCardScreenName, ComposableEvent>, modifier: Modifier) {
         when (link) {
-            is MovieCardScreenLink -> MovieCardScreen(link.parameter, modifier)
+            is MovieCardScreenLink -> MovieCardScreen2(link.parameter, modifier)
         }
     }
 }

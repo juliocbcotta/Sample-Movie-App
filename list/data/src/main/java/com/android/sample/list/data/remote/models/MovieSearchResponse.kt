@@ -1,7 +1,7 @@
 package com.android.sample.list.data.remote.models
 
-import com.android.sample.list.abstraction.Movie
-import com.android.sample.list.abstraction.MovieSearchResult
+import com.android.sample.list.abstraction.domain.Movie
+import com.android.sample.list.abstraction.domain.MovieSearchResult
 import com.google.gson.annotations.SerializedName
 
 // NOTE: The API returns a 200, but changes the response model to an error when it can't find a movie
