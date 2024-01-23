@@ -4,14 +4,14 @@ androidDesugarJdkLibs = "2.0.4"
 androidGradlePlugin = "8.2.1"
 androidxActivity = "1.8.2"
 androidxAppCompat = "1.6.1"
-androidxComposeCompiler = "1.5.8"
+androidxComposeCompiler = "1.5.9-dev-k2.0.0-Beta3-7c5ec6895a0"
 androidxCore = "1.12.0"
 androidxEspresso = "3.5.1"
 androidxLifecycle = "2.7.0"
 coil = "2.5.0"
-kotlin = "1.9.22"
+kotlin = "2.0.0-Beta3"
 kotlinxCoroutines = "1.7.3"
-ksp = "1.9.22-1.0.17"
+ksp = "2.0.0-Beta3-1.0.17"
 okhttp = "4.12.0"
 retrofit = "2.9.0"
 
@@ -46,4 +46,5 @@ ksp-gradlePlugin = { group = "com.google.devtools.ksp", name = "com.google.devto
 [plugins]
 android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
 android-library = { id = "com.android.library", version.ref = "androidGradlePlugin" }
+kagp = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }

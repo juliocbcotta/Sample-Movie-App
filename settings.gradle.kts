@@ -1,3 +1,5 @@
+import java.util.Properties
+
 pluginManagement {
     includeBuild("plugins")
     repositories {
@@ -7,17 +9,23 @@ pluginManagement {
     }
 }
 dependencyResolutionManagement {
+    val properties = Properties()
+    properties.load(file("github.properties").bufferedReader())
+    val user = properties["github.user"].toString()
+    val token = properties["github.token"].toString()
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
         google()
         mavenCentral()
-
+        maven {
+            url = uri("https://androidx.dev/storage/compose-compiler/repository/")
+        }
         maven {
             name = "GitHubPackages"
             url = uri("https://maven.pkg.github.com/veepee-oss/link-router")
             credentials {
-                username = "BugsBunnyBR"
-                password = "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"
+                username = user
+                password = token
             }
         }
     }
