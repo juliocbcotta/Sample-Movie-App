@@ -3,6 +3,7 @@ package com.android.sample.card.presentation.state
 import android.os.Parcelable
 import com.android.sample.list.abstraction.domain.MovieDetail
 import com.android.sample.list.abstraction.presentation.MovieCardEvent
+import com.android.sample.list.abstraction.presentation.MovieCardEvent.*
 import com.android.sample.list.abstraction.presentation.MovieCardState
 import com.android.sample.list.abstraction.presentation.MovieCardState.Error
 import com.android.sample.list.abstraction.presentation.MovieCardState.Initial
@@ -35,5 +36,5 @@ data class ParcelableMovieDetail(
 ) : MovieDetail, Parcelable
 
 sealed interface ParcelableMovieCardEvent : MovieCardEvent {
-    data object RequestToReload : MovieCardEvent.RequestToReload
+    data object RequestToReload : ParcelableMovieCardEvent, MovieCardEvent.RequestToReload
 }

@@ -117,12 +117,14 @@ fun MovieCardScreen(
     var data by remember { mutableStateOf(movieDetail) }
     MovieCardContainer(data) {
         state.which(
-            onInitial = {},
+            onInitial = {
+                Loading()
+            },
             onLoading = {
                 Loading()
             },
-            onSuccess = { s ->
-                data = s.result
+            onSuccess = { success ->
+                data = success.result
             },
             onError = {
                 Button(

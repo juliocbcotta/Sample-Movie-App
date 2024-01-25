@@ -76,6 +76,17 @@ fun ListScreen(
             if (s.result.isEmpty()) {
                 Text("No movies found for your query")
             } else {
+                /**
+                 * ProvideDaggerComponentStore vs ProvideVMScopedDaggerComponentStore
+                 *
+                 * ProvideDaggerComponentStore will cache your DaggerComponents
+                 * and will live as long as this current composition
+                 *
+                 * ProvideVMScopedDaggerComponentStore in memory while the ViewModel hosting the store is around.
+                 *
+                 * I am placing this here because each Card will reuse the dagger component generated at the first card.
+                 *
+                 * */
                 ProvideDaggerComponentStore("list") {
                     /**
                      * ProvidePresenterStore vs ProvideVMScopedPresenterStore
