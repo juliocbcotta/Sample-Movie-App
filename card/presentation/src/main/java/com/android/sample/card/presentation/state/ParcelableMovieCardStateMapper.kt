@@ -4,7 +4,7 @@ import com.android.sample.card.presentation.state.ParcelableMovieCardState.Parce
 import com.android.sample.card.presentation.state.ParcelableMovieCardState.ParcelableInitial
 import com.android.sample.card.presentation.state.ParcelableMovieCardState.ParcelableLoading
 import com.android.sample.card.presentation.state.ParcelableMovieCardState.ParcelableSuccess
-import com.android.sample.list.abstraction.MovieDetail
+import com.android.sample.list.abstraction.domain.MovieDetail
 import com.android.sample.list.abstraction.presentation.MovieCardState
 import com.android.sample.list.abstraction.presentation.MovieCardStateMapper
 import javax.inject.Inject

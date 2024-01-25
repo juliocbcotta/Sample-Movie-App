@@ -10,3 +10,4 @@
 api.properties
 github.properties
 /plugins/convention/build/
+.kotlin

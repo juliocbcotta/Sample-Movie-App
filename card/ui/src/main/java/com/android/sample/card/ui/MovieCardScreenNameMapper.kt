@@ -1,4 +1,4 @@
-package com.android.sample.card.presentation
+package com.android.sample.card.ui
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier

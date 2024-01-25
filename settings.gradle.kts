@@ -51,6 +51,7 @@ include(":card:presentation")
 include(":card:abstraction")
 include(":card:data")
 include(":card:router")
+include(":card:ui")
 
 
 include(":search:presentation")

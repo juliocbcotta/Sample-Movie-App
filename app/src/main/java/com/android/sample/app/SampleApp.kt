@@ -1,7 +1,7 @@
 package com.android.sample.app
 
 import android.app.Application
-import com.android.sample.card.presentation.MovieCardScreenNameMapper
+import com.android.sample.card.ui.MovieCardScreenNameMapper
 import com.android.sample.list.presentation.ListScreenNameMapper
 import com.android.sample.search.presentation.SearchScreenNameMapper
 import com.veepee.vpcore.route.GlobalRouterBuilder

@@ -1,4 +1,4 @@
-package com.android.sample.card.presentation
+package com.android.sample.card.ui
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -36,7 +36,7 @@ import com.android.sample.core.di.LocalDaggerComponentStore
 import com.android.sample.core.di.presenter.InMemoryStateFactory
 import com.android.sample.core.di.presenter.assistedPresenter
 import com.android.sample.core.di.viewmodel.assistedComposeViewModel
-import com.android.sample.list.abstraction.MovieDetail
+import com.android.sample.list.abstraction.domain.MovieDetail
 import com.android.sample.list.abstraction.presentation.MovieCardPresenter
 import com.android.sample.list.abstraction.presentation.which
 

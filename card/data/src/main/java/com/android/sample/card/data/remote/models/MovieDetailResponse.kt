@@ -1,6 +1,6 @@
 package com.android.sample.card.data.remote.models
 
-import com.android.sample.list.abstraction.MovieDetail
+import com.android.sample.list.abstraction.domain.MovieDetail
 import com.google.gson.annotations.SerializedName
 
 data class MovieDetailResponse(

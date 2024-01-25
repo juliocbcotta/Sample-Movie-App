@@ -16,7 +16,7 @@ import javax.inject.Singleton
         MovieCardModule::class
     ]
 )
-internal interface MovieCardComponent : DaggerComponent {
+interface MovieCardComponent : DaggerComponent {
 
     val viewModelFactory: MovieCardViewModelFactory
 

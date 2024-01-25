@@ -1,7 +1,7 @@
 package com.android.sample.card.presentation.state
 
 import android.os.Parcelable
-import com.android.sample.list.abstraction.MovieDetail
+import com.android.sample.list.abstraction.domain.MovieDetail
 import com.android.sample.list.abstraction.presentation.MovieCardEvent
 import com.android.sample.list.abstraction.presentation.MovieCardState
 import com.android.sample.list.abstraction.presentation.MovieCardState.Error

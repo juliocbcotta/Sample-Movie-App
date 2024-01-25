@@ -52,14 +52,16 @@ dependencies {
     implementation(project(":list:presentation"))
     implementation(project(":card:presentation"))
     implementation(project(":search:presentation"))
+    implementation(project(":card:ui"))
+
 
     implementation(project(":search:router"))
 
     implementation("com.veepee.vpcore.link-router:link-router:0.5.3")
 
-    implementation("androidx.core:core-ktx:1.12.0")
+    implementation(libs.androidx.core.ktx)
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
-    implementation("androidx.activity:activity-compose:1.8.2")
+    implementation(libs.androidx.activity.compose)
     implementation(platform("androidx.compose:compose-bom:2023.10.01"))
     implementation("androidx.compose.ui:ui")
     implementation("androidx.compose.ui:ui-graphics")

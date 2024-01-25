@@ -1,8 +1,8 @@
 package com.android.sample.card.presentation
 
-import com.android.sample.card.data.remote.OMDBMovieDetailService
 import com.android.sample.core.coroutines.runSuspendCatching
 import com.android.sample.core.presentation.state.factory.StateFactory
+import com.android.sample.list.abstraction.data.remote.MovieDetailService
 import com.android.sample.list.abstraction.presentation.MovieCardEvent
 import com.android.sample.list.abstraction.presentation.MovieCardEvent.RequestToReload
 import com.android.sample.list.abstraction.presentation.MovieCardPresenter
@@ -23,13 +23,12 @@ interface MovieCardPresenterFactory {
     ): MovieCardPresenterImpl
 }
 
-
 class MovieCardPresenterImpl @AssistedInject constructor(
     @Assisted private val imdbId: String,
     @Assisted private val stateFactory: StateFactory,
     private val stateMapper: MovieCardStateMapper,
     private val scope: CoroutineScope,
-    private val service: OMDBMovieDetailService,
+    private val service: MovieDetailService,
 ) : MovieCardPresenter {
 
     private val _state = stateFactory.create<MovieCardState>(imdbId, stateMapper.initial)
