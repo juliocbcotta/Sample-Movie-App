@@ -1,22 +1,15 @@
-package com.android.sample.core.di
+package com.android.sample.core.di.component
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.DisposableEffect
-import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.runtime.remember
 import androidx.lifecycle.ViewModelStoreOwner
 import androidx.lifecycle.viewmodel.compose.LocalViewModelStoreOwner
+import com.android.sample.core.di.Store
+import com.android.sample.core.di.ViewModelScopedStoreOwner
 import com.android.sample.core.di.viewmodel.composeViewModel
-import com.android.sample.core.presentation.store.Store
 import kotlin.reflect.KClass
-
-interface DaggerComponent
-
-val LocalDaggerComponentStore =
-    compositionLocalOf<Store<KClass<out DaggerComponent>, DaggerComponent>> { DaggerComponentStore() }
-
-class DaggerComponentStore : Store<KClass<out DaggerComponent>, DaggerComponent>()
 
 @Composable
 fun ProvideDaggerComponentStore(key: String, content: @Composable () -> Unit) {
@@ -26,7 +19,7 @@ fun ProvideDaggerComponentStore(key: String, content: @Composable () -> Unit) {
             daggerStore.clear()
         }
     }
-    CompositionLocalProvider(LocalDaggerComponentStore provides daggerStore) {
+    ProvideDaggerComponentStore(daggerStore) {
         content()
     }
 }
@@ -45,7 +38,18 @@ fun ProvideVMScopedDaggerComponentStore(
         viewModelFactory = {
             ViewModelScopedStoreOwner(store = DaggerComponentStore())
         })
-    CompositionLocalProvider(LocalDaggerComponentStore provides vmStoreOwner.store) {
+    ProvideDaggerComponentStore(vmStoreOwner.store) {
+        content()
+    }
+}
+
+@Composable
+fun ProvideDaggerComponentStore(
+    daggerStore: Store<KClass<out DaggerComponent>, DaggerComponent>,
+    content: @Composable () -> Unit
+) {
+
+    CompositionLocalProvider(LocalDaggerComponentStore provides daggerStore) {
         content()
     }
 }

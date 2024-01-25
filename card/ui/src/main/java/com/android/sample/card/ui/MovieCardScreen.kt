@@ -32,9 +32,10 @@ import com.android.sample.card.presentation.di.DaggerMovieCardComponent
 import com.android.sample.card.presentation.di.MovieCardComponent
 import com.android.sample.card.presentation.state.ParcelableMovieCardEvent.RequestToReload
 import com.android.sample.card.router.MovieCardParameter
-import com.android.sample.core.di.LocalDaggerComponentStore
+import com.android.sample.core.di.component.LocalDaggerComponentStore
+import com.android.sample.core.di.component.rememberDaggerComponent
 import com.android.sample.core.di.presenter.InMemoryStateFactory
-import com.android.sample.core.di.presenter.assistedPresenter
+import com.android.sample.core.di.presenter.rememberPresenter
 import com.android.sample.core.di.viewmodel.assistedComposeViewModel
 import com.android.sample.list.abstraction.domain.MovieDetail
 import com.android.sample.list.abstraction.presentation.MovieCardPresenter
@@ -81,13 +82,12 @@ fun MovieCardScreen(parameter: MovieCardParameter, modifier: Modifier) {
 @Composable
 fun MovieCardScreen2(parameter: MovieCardParameter, modifier: Modifier) {
     Box(modifier) {
-        val store = LocalDaggerComponentStore.current
+        val component = rememberDaggerComponent { DaggerMovieCardComponent.builder().build() }
+
         MovieCardScreen(
             movieDetail = parameter.toMovieDetail(),
-            presenter = assistedPresenter("Presenter${parameter.imdbId}") {
-                store.getOrCreate(MovieCardComponent::class) {
-                    DaggerMovieCardComponent.builder().build()
-                }.presenterFactory.create(parameter.imdbId, InMemoryStateFactory)
+            presenter = rememberPresenter("Presenter${parameter.imdbId}") {
+                component.presenterFactory.create(parameter.imdbId, InMemoryStateFactory)
             })
     }
 }

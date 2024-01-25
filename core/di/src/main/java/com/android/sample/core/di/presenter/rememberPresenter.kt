@@ -6,7 +6,7 @@ import androidx.compose.runtime.remember
 import com.android.sample.core.presentation.presenter.Presenter
 
 @Composable
-inline fun <reified T : Presenter> assistedPresenter(
+inline fun <reified T : Presenter> rememberPresenter(
     key: String = T::class.java.simpleName,
     crossinline create: @DisallowComposableCalls () -> T
 ): T {

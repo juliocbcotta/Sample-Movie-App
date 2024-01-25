@@ -1,4 +1,4 @@
-package com.android.sample.core.presentation.store
+package com.android.sample.core.di
 
 abstract class Store<K, V>(
     protected val map: MutableMap<K, V> = mutableMapOf()

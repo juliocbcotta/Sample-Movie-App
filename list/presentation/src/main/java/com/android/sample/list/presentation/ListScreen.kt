@@ -16,11 +16,11 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.android.sample.card.router.ListScreenParameter
 import com.android.sample.card.router.MovieCardParameter
 import com.android.sample.card.router.MovieCardScreenLink
-import com.android.sample.core.di.ProvideDaggerComponentStore
+import com.android.sample.core.di.component.ProvideDaggerComponentStore
 import com.android.sample.core.di.presenter.InMemoryStateFactory
 import com.android.sample.core.di.presenter.ProvidePresenterStore
 import com.android.sample.core.di.presenter.ProvideVMScopedPresenterStore
-import com.android.sample.core.di.presenter.assistedPresenter
+import com.android.sample.core.di.presenter.rememberPresenter
 import com.android.sample.core.di.viewmodel.assistedComposeViewModel
 import com.android.sample.list.abstraction.domain.Movie
 import com.android.sample.list.abstraction.presentation.ListPresenter
@@ -50,7 +50,7 @@ fun ListScreenContainer(modifier: Modifier, parameter: ListScreenParameter) {
 fun ListScreenContainer2(modifier: Modifier, parameter: ListScreenParameter) {
     Box(modifier) {
         ListScreen(parameter.toMovieTag(),
-            assistedPresenter {
+            rememberPresenter {
                 DaggerListComponent.create().presenterFactory.create(InMemoryStateFactory)
             })
     }
@@ -88,6 +88,18 @@ fun ListScreen(
                  *
                  * */
                 ProvideDaggerComponentStore("list") {
+                    /**
+                     * ProvidePresenterStore vs ProvideVMScopedPresenterStore
+                     *
+                     * ProvidePresenterStore will keep it's presenters in memory
+                     * while the current composable is not disposed and there is capacity.
+                     *
+                     * ProvideVMScopedPresenterStore will keep it's presenters in memory while
+                     * the ViewModel hosting the store is around and there is capacity.
+                     *
+                     * Both Stores use a capacity to remove the eldest Presenter in a LRU fashion.
+                     *
+                     * */
                     /**
                      * ProvidePresenterStore vs ProvideVMScopedPresenterStore
                      *

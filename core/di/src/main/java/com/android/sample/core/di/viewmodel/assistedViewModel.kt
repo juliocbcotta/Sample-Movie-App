@@ -17,7 +17,7 @@ inline fun <reified T : ViewModel> composeViewModel(
     viewModelStoreOwner: ViewModelStoreOwner = checkNotNull(LocalViewModelStoreOwner.current) {
         "No ViewModelStoreOwner was provided via LocalViewModelStoreOwner"
     },
-    crossinline viewModelFactory: () -> T
+    crossinline viewModelFactory: @DisallowComposableCalls () -> T
 ): T = viewModel(
     modelClass = T::class.java,
     viewModelStoreOwner = viewModelStoreOwner,

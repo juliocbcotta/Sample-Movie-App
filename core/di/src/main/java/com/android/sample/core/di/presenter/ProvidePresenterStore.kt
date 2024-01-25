@@ -9,7 +9,7 @@ import androidx.lifecycle.viewmodel.compose.LocalViewModelStoreOwner
 import com.android.sample.core.di.ViewModelScopedStoreOwner
 import com.android.sample.core.di.viewmodel.composeViewModel
 import com.android.sample.core.presentation.presenter.Presenter
-import com.android.sample.core.presentation.store.Store
+import com.android.sample.core.di.Store
 
 @Composable
 fun ProvidePresenterStore(capacity: Int, key: String, content: @Composable () -> Unit) {

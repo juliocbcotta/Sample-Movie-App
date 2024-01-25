@@ -1,11 +1,14 @@
 package com.android.sample.core.presentation.coroutines
 
-import com.android.sample.core.coroutines.ClosableCoroutineScope
 import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
+import java.io.Closeable
 import kotlin.coroutines.CoroutineContext
+
+interface ClosableCoroutineScope : CoroutineScope, Closeable
 
 class PresentationCoroutineScope(
     private val dispatcher: CoroutineDispatcher = Dispatchers.Main.immediate,
@@ -13,6 +16,6 @@ class PresentationCoroutineScope(
 ) : ClosableCoroutineScope {
 
     override fun close() {
-        coroutineContext.cancel()
+        cancel()
     }
 }

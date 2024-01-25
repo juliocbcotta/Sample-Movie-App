@@ -26,7 +26,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.android.sample.card.router.ListScreenLink
 import com.android.sample.card.router.ListScreenParameter
-import com.android.sample.core.di.LocalDaggerComponentStore
+import com.android.sample.core.di.component.LocalDaggerComponentStore
 import com.android.sample.core.di.viewmodel.composeViewModel
 import com.android.sample.search.presentation.SearchEvent.OnActiveChange
 import com.android.sample.search.presentation.SearchEvent.OnDeleteTag

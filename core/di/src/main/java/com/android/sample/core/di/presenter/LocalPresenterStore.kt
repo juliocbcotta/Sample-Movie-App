@@ -2,7 +2,7 @@ package com.android.sample.core.di.presenter
 
 import androidx.compose.runtime.compositionLocalOf
 import com.android.sample.core.presentation.presenter.Presenter
-import com.android.sample.core.presentation.store.Store
+import com.android.sample.core.di.Store
 
 val LocalPresenterStore = compositionLocalOf<Store<String, Presenter>> {
     PresenterStore(100)

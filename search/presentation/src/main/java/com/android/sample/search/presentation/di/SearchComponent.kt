@@ -1,6 +1,6 @@
 package com.android.sample.search.presentation.di
 
-import com.android.sample.core.di.DaggerComponent
+import com.android.sample.core.di.component.DaggerComponent
 import com.android.sample.core.networking.di.NetworkingModule
 import com.android.sample.search.presentation.SearchViewModel
 import dagger.Component
