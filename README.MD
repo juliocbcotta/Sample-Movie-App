@@ -104,11 +104,12 @@ The UI doesn't need to know about how to parse this model as JSON, the data laye
 this model's capabilities of being parcelized, and no layer in between those two (data and UI) should know about any of
 it.
 
-> Why? Why not?
+> "Why? Why not?"
 
 Well, I for sure don't think too much about the "Single Responsibility Principle", but I do think that something stinks because tomorrow you will migrate from Gson to Kotlin Serialization in the project, and at that moment you will have two options.
-1 - Go all in removing the Gson annotations and adding the new ones.
-2 - Keep both annotations in the same model.
+
+1. Go all in removing the Gson annotations and adding the new ones.
+2. Keep both annotations in the same model.
 
 In 1, you may break something in production and there is no way to switch back to the old implementation.
 In 2, you may be able to switch between implementations but two sprints later when you decide to remove the old annotations you need to edit all those models again bringing the possibility of breaking something again.

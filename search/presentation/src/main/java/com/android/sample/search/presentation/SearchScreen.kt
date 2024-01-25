@@ -26,7 +26,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.android.sample.card.router.ListScreenLink
 import com.android.sample.card.router.ListScreenParameter
-import com.android.sample.core.di.component.LocalDaggerComponentStore
+import com.android.sample.core.di.component.rememberDaggerComponent
 import com.android.sample.core.di.viewmodel.composeViewModel
 import com.android.sample.search.presentation.SearchEvent.OnActiveChange
 import com.android.sample.search.presentation.SearchEvent.OnDeleteTag
@@ -34,19 +34,16 @@ import com.android.sample.search.presentation.SearchEvent.OnQueryChange
 import com.android.sample.search.presentation.SearchEvent.OnSubmitQuery
 import com.android.sample.search.presentation.SearchEvent.OnToggleTag
 import com.android.sample.search.presentation.di.DaggerSearchComponent
-import com.android.sample.search.presentation.di.SearchComponent
 import com.veepee.vpcore.route.link.compose.ComposableFor
 
 @Composable
 fun SearchScreenContainer(modifier: Modifier) {
     Box(modifier) {
-        val componentStore = LocalDaggerComponentStore.current
+        val component = rememberDaggerComponent { DaggerSearchComponent.builder().build() }
         val viewModel: SearchViewModel = composeViewModel(
             key = "Search VM key",
             viewModelFactory = {
-                componentStore.getOrCreate(SearchComponent::class) {
-                    DaggerSearchComponent.builder().build()
-                }.viewModel
+                component.viewModel
             }
         )
         val searchState by viewModel.state.collectAsStateWithLifecycle()

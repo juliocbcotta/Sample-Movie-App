@@ -45,6 +45,7 @@ include(":list:abstraction")
 include(":list:tracking")
 include(":list:data")
 include(":list:router")
+include(":list:ui")
 
 
 include(":card:presentation")

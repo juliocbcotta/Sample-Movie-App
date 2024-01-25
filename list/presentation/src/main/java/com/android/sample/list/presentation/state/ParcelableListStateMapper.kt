@@ -1,13 +1,13 @@
-package com.android.sample.list.presentation.model
+package com.android.sample.list.presentation.state
 
 import com.android.sample.list.abstraction.domain.Movie
 import com.android.sample.list.abstraction.presentation.ListState.Error
 import com.android.sample.list.abstraction.presentation.ListState.Loading
 import com.android.sample.list.abstraction.presentation.ListState.Success
 import com.android.sample.list.abstraction.presentation.ListStateMapper
-import com.android.sample.list.presentation.model.ParcelableListState.ParcelableError
-import com.android.sample.list.presentation.model.ParcelableListState.ParcelableLoading
-import com.android.sample.list.presentation.model.ParcelableListState.ParcelableSuccess
+import com.android.sample.list.presentation.state.ParcelableListState.ParcelableError
+import com.android.sample.list.presentation.state.ParcelableListState.ParcelableLoading
+import com.android.sample.list.presentation.state.ParcelableListState.ParcelableSuccess
 import javax.inject.Inject
 
 class ParcelableListStateMapper @Inject constructor() : ListStateMapper {

@@ -42,6 +42,8 @@ android {
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
+            // https://github.com/Kotlin/kotlinx.coroutines?tab=readme-ov-file#avoiding-including-the-debug-infrastructure-in-the-resulting-apk
+            excludes += "DebugProbesKt.bin"
         }
     }
 }
@@ -49,8 +51,7 @@ android {
 dependencies {
 
     implementation(project(":core:ui"))
-    implementation(project(":list:presentation"))
-    implementation(project(":card:presentation"))
+    implementation(project(":list:ui"))
     implementation(project(":search:presentation"))
     implementation(project(":card:ui"))
 

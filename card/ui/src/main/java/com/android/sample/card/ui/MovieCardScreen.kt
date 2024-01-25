@@ -29,10 +29,8 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.android.sample.card.presentation.di.DaggerMovieCardComponent
-import com.android.sample.card.presentation.di.MovieCardComponent
 import com.android.sample.card.presentation.state.ParcelableMovieCardEvent.RequestToReload
 import com.android.sample.card.router.MovieCardParameter
-import com.android.sample.core.di.component.LocalDaggerComponentStore
 import com.android.sample.core.di.component.rememberDaggerComponent
 import com.android.sample.core.di.presenter.InMemoryStateFactory
 import com.android.sample.core.di.presenter.rememberPresenter
@@ -54,12 +52,9 @@ import com.android.sample.list.abstraction.presentation.which
 @Composable
 fun MovieCardScreen(parameter: MovieCardParameter, modifier: Modifier) {
     Box(modifier) {
-        val store = LocalDaggerComponentStore.current
+        val component = rememberDaggerComponent { DaggerMovieCardComponent.builder().build() }
         MovieCardScreen(parameter.toMovieDetail(),
             assistedComposeViewModel("VM${parameter.imdbId}") { stateFactory ->
-                val component = store.getOrCreate(MovieCardComponent::class) {
-                    DaggerMovieCardComponent.builder().build()
-                }
                 component.viewModelFactory.create(
                     component.presenterFactory.create(parameter.imdbId, stateFactory)
                 )

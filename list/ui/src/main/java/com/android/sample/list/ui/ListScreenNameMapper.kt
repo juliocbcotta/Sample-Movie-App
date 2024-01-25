@@ -1,4 +1,4 @@
-package com.android.sample.list.presentation
+package com.android.sample.list.ui
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier

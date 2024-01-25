@@ -1,4 +1,4 @@
-package com.android.sample.list.presentation
+package com.android.sample.list.ui
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -17,6 +17,7 @@ import com.android.sample.card.router.ListScreenParameter
 import com.android.sample.card.router.MovieCardParameter
 import com.android.sample.card.router.MovieCardScreenLink
 import com.android.sample.core.di.component.ProvideDaggerComponentStore
+import com.android.sample.core.di.component.rememberDaggerComponent
 import com.android.sample.core.di.presenter.InMemoryStateFactory
 import com.android.sample.core.di.presenter.ProvidePresenterStore
 import com.android.sample.core.di.presenter.ProvideVMScopedPresenterStore
@@ -26,8 +27,8 @@ import com.android.sample.list.abstraction.domain.Movie
 import com.android.sample.list.abstraction.presentation.ListPresenter
 import com.android.sample.list.abstraction.presentation.ListState
 import com.android.sample.list.presentation.di.DaggerListComponent
-import com.android.sample.list.presentation.model.ParcelableListEvent.ParcelableOnSubmitEvent
-import com.android.sample.list.presentation.model.ParcelableMovieQuery
+import com.android.sample.list.presentation.state.ParcelableListEvent.ParcelableOnSubmitEvent
+import com.android.sample.list.presentation.state.ParcelableMovieQuery
 import com.veepee.vpcore.route.link.compose.ComposableFor
 
 @Immutable
@@ -36,9 +37,9 @@ data class MovieTag(val query: String)
 @Composable
 fun ListScreenContainer(modifier: Modifier, parameter: ListScreenParameter) {
     Box(modifier) {
+        val component = rememberDaggerComponent { DaggerListComponent.builder().build() }
         ListScreen(parameter.toMovieTag(),
             assistedComposeViewModel("ListVM") { stateFactory ->
-                val component = DaggerListComponent.builder().build()
                 component.viewModelFactory.create(
                     component.presenterFactory.create(stateFactory)
                 )
@@ -51,7 +52,8 @@ fun ListScreenContainer2(modifier: Modifier, parameter: ListScreenParameter) {
     Box(modifier) {
         ListScreen(parameter.toMovieTag(),
             rememberPresenter {
-                DaggerListComponent.create().presenterFactory.create(InMemoryStateFactory)
+                DaggerListComponent.create()
+                    .presenterFactory.create(InMemoryStateFactory)
             })
     }
 }
@@ -99,17 +101,10 @@ fun ListScreen(
                      *
                      * Both Stores use a capacity to remove the eldest Presenter in a LRU fashion.
                      *
-                     * */
-                    /**
-                     * ProvidePresenterStore vs ProvideVMScopedPresenterStore
-                     *
-                     * ProvidePresenterStore will keep it's presenters in memory
-                     * while the current composable is not disposed and there is capacity.
-                     *
-                     * ProvideVMScopedPresenterStore will keep it's presenters in memory while
-                     * the ViewModel hosting the store is around and there is capacity.
-                     *
-                     * Both Stores use a capacity to remove the eldest Presenter in a LRU fashion.
+                     * Just to be clear: This should be used for very long lists,
+                     * if you have 20 items in a list, it is worth to keep 20 presenters in memory,
+                     * if you have 100 items in the list, it is a good compromise to keep the last 40 presenters
+                     * in memory while the list is being displayed.
                      *
                      * */
                     ProvidePresenterStore(9, "list") {}

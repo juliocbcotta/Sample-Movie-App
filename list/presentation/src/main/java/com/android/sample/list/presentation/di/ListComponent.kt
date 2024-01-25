@@ -1,5 +1,6 @@
 package com.android.sample.list.presentation.di
 
+import com.android.sample.core.di.component.DaggerComponent
 import com.android.sample.core.networking.di.NetworkingModule
 import com.android.sample.list.data.di.DataModule
 import com.android.sample.list.presentation.ListPresenterFactory
@@ -15,7 +16,7 @@ import javax.inject.Singleton
         ListModule::class
     ]
 )
-internal interface ListComponent {
+interface ListComponent : DaggerComponent {
 
     val viewModelFactory: ListViewModelFactory
 

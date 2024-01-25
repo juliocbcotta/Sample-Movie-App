@@ -9,13 +9,10 @@ android {
 }
 
 dependencies {
-
-    implementation(project(":core:ui"))
     implementation(project(":core:di"))
     implementation(project(":core:networking"))
     implementation(project(":core:coroutines"))
 
-    implementation(project(":card:router"))
     implementation(project(":card:data"))
     implementation(project(":card:abstraction"))
 

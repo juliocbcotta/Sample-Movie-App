@@ -1,4 +1,4 @@
-package com.android.sample.list.presentation.model
+package com.android.sample.list.presentation.state
 
 import com.android.sample.list.abstraction.domain.MovieQuery
 import com.android.sample.list.abstraction.presentation.MovieQueryStateMapper
