@@ -14,7 +14,7 @@ data class ParcelableMovie(
     override val poster: String
 ) : Movie, Parcelable
 
-sealed interface ParcelableListState : ListState, Parcelable {
+sealed interface ParcelableListState : Parcelable {
     @Parcelize
     data object ParcelableLoading : ListState.Loading, ParcelableListState
 
@@ -24,3 +24,4 @@ sealed interface ParcelableListState : ListState, Parcelable {
     @Parcelize
     data object ParcelableError : ListState.Error, ParcelableListState
 }
+

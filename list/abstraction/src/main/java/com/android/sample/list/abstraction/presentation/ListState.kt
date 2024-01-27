@@ -2,7 +2,7 @@ package com.android.sample.list.abstraction.presentation
 
 import com.android.sample.list.abstraction.domain.Movie
 
-interface ListState {
+sealed interface ListState {
 
     interface Loading : ListState
 

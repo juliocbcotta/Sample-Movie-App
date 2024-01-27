@@ -19,7 +19,6 @@ import com.android.sample.card.router.MovieCardScreenLink
 import com.android.sample.core.di.component.ProvideDaggerComponentStore
 import com.android.sample.core.di.component.rememberDaggerComponent
 import com.android.sample.core.di.presenter.InMemoryStateFactory
-import com.android.sample.core.di.presenter.ProvidePresenterStore
 import com.android.sample.core.di.presenter.ProvideVMScopedPresenterStore
 import com.android.sample.core.di.presenter.rememberPresenter
 import com.android.sample.core.di.viewmodel.assistedComposeViewModel
@@ -107,7 +106,6 @@ fun ListScreen(
                      * in memory while the list is being displayed.
                      *
                      * */
-                    ProvidePresenterStore(9, "list") {}
                     ProvideVMScopedPresenterStore(9, "list") {
                         LazyColumn {
                             items(s.result) { movie ->

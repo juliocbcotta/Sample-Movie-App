@@ -3,15 +3,13 @@ package com.android.sample.card.presentation.state
 import android.os.Parcelable
 import com.android.sample.list.abstraction.domain.MovieDetail
 import com.android.sample.list.abstraction.presentation.MovieCardEvent
-import com.android.sample.list.abstraction.presentation.MovieCardEvent.*
-import com.android.sample.list.abstraction.presentation.MovieCardState
 import com.android.sample.list.abstraction.presentation.MovieCardState.Error
 import com.android.sample.list.abstraction.presentation.MovieCardState.Initial
 import com.android.sample.list.abstraction.presentation.MovieCardState.Loading
 import com.android.sample.list.abstraction.presentation.MovieCardState.Success
 import kotlinx.parcelize.Parcelize
 
-sealed interface ParcelableMovieCardState : MovieCardState, Parcelable {
+sealed interface ParcelableMovieCardState : Parcelable {
     @Parcelize
     data object ParcelableInitial : ParcelableMovieCardState, Initial
 
@@ -35,6 +33,6 @@ data class ParcelableMovieDetail(
     override val plot: String
 ) : MovieDetail, Parcelable
 
-sealed interface ParcelableMovieCardEvent : MovieCardEvent {
+sealed interface ParcelableMovieCardEvent {
     data object RequestToReload : ParcelableMovieCardEvent, MovieCardEvent.RequestToReload
 }

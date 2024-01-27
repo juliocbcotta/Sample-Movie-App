@@ -37,7 +37,10 @@ import com.android.sample.core.di.presenter.rememberPresenter
 import com.android.sample.core.di.viewmodel.assistedComposeViewModel
 import com.android.sample.list.abstraction.domain.MovieDetail
 import com.android.sample.list.abstraction.presentation.MovieCardPresenter
-import com.android.sample.list.abstraction.presentation.which
+import com.android.sample.list.abstraction.presentation.MovieCardState.Error
+import com.android.sample.list.abstraction.presentation.MovieCardState.Initial
+import com.android.sample.list.abstraction.presentation.MovieCardState.Loading
+import com.android.sample.list.abstraction.presentation.MovieCardState.Success
 
 /**
  * This composable VM will stay in memory as long as the ViewModelStore exists.
@@ -111,25 +114,22 @@ fun MovieCardScreen(
     val state by presenter.state.collectAsStateWithLifecycle()
     var data by remember { mutableStateOf(movieDetail) }
     MovieCardContainer(data) {
-        state.which(
-            onInitial = {
-                Loading()
-            },
-            onLoading = {
-                Loading()
-            },
-            onSuccess = { success ->
-                data = success.result
-            },
-            onError = {
-                Button(
-                    onClick = {
-                        presenter.onEvent(RequestToReload)
-                    }) {
-                    Text("Load extra info")
-                }
-            },
-        )
+        when (val s = state) {
+            is Error -> RetryButton { event -> presenter.onEvent(event) }
+            is Initial -> Loading()
+            is Loading -> Loading()
+            is Success -> data = s.result
+        }
+    }
+}
+
+@Composable
+private fun RetryButton(onEvent: (RequestToReload) -> Unit) {
+    Button(
+        onClick = {
+            onEvent(RequestToReload)
+        }) {
+        Text("Load extra info")
     }
 }
 
