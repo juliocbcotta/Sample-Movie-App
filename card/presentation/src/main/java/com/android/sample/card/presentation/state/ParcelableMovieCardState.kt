@@ -2,7 +2,7 @@ package com.android.sample.card.presentation.state
 
 import android.os.Parcelable
 import com.android.sample.list.abstraction.domain.MovieDetail
-import com.android.sample.list.abstraction.presentation.MovieCardEvent
+import com.android.sample.list.abstraction.presentation.MovieCardEvent.RequestToReload
 import com.android.sample.list.abstraction.presentation.MovieCardState.Error
 import com.android.sample.list.abstraction.presentation.MovieCardState.Initial
 import com.android.sample.list.abstraction.presentation.MovieCardState.Loading
@@ -17,8 +17,9 @@ sealed interface ParcelableMovieCardState : Parcelable {
     data object ParcelableLoading : ParcelableMovieCardState, Loading
 
     @Parcelize
-    data class ParcelableSuccess(override val result: ParcelableMovieDetail) : ParcelableMovieCardState,
-        Success
+    data class ParcelableSuccess(
+        override val result: ParcelableMovieDetail
+    ) : ParcelableMovieCardState, Success
 
     @Parcelize
     data object ParcelableError : ParcelableMovieCardState, Error
@@ -34,5 +35,5 @@ data class ParcelableMovieDetail(
 ) : MovieDetail, Parcelable
 
 sealed interface ParcelableMovieCardEvent {
-    data object RequestToReload : ParcelableMovieCardEvent, MovieCardEvent.RequestToReload
+    data object ParcelableRequestToReload : ParcelableMovieCardEvent, RequestToReload
 }

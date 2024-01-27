@@ -2,8 +2,8 @@ package com.android.sample.list.abstraction.presentation
 
 import com.android.sample.list.abstraction.domain.MovieQuery
 
-interface ListEvent {
-    interface OnSubmitQuery {
+sealed interface ListEvent {
+    interface OnSubmitQuery : ListEvent {
         val query: MovieQuery
     }
 }

@@ -29,13 +29,14 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.android.sample.card.presentation.di.DaggerMovieCardComponent
-import com.android.sample.card.presentation.state.ParcelableMovieCardEvent.RequestToReload
+import com.android.sample.card.presentation.state.ParcelableMovieCardEvent.ParcelableRequestToReload
 import com.android.sample.card.router.MovieCardParameter
 import com.android.sample.core.di.component.rememberDaggerComponent
 import com.android.sample.core.di.presenter.InMemoryStateFactory
 import com.android.sample.core.di.presenter.rememberPresenter
 import com.android.sample.core.di.viewmodel.assistedComposeViewModel
 import com.android.sample.list.abstraction.domain.MovieDetail
+import com.android.sample.list.abstraction.presentation.MovieCardEvent.RequestToReload
 import com.android.sample.list.abstraction.presentation.MovieCardPresenter
 import com.android.sample.list.abstraction.presentation.MovieCardState.Error
 import com.android.sample.list.abstraction.presentation.MovieCardState.Initial
@@ -127,7 +128,7 @@ fun MovieCardScreen(
 private fun RetryButton(onEvent: (RequestToReload) -> Unit) {
     Button(
         onClick = {
-            onEvent(RequestToReload)
+            onEvent(ParcelableRequestToReload)
         }) {
         Text("Load extra info")
     }
