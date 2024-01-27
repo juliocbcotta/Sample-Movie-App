@@ -15,6 +15,3 @@ sealed interface MovieCardState {
     interface Error : MovieCardState
 }
 
-sealed interface MovieCardEvent {
-    interface RequestToReload : MovieCardEvent
-}

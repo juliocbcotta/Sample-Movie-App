@@ -29,7 +29,6 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.android.sample.card.presentation.di.DaggerMovieCardComponent
-import com.android.sample.card.presentation.state.ParcelableMovieCardEvent.ParcelableRequestToReload
 import com.android.sample.card.router.MovieCardParameter
 import com.android.sample.core.di.component.rememberDaggerComponent
 import com.android.sample.core.di.presenter.InMemoryStateFactory
@@ -37,6 +36,7 @@ import com.android.sample.core.di.presenter.rememberPresenter
 import com.android.sample.core.di.viewmodel.assistedComposeViewModel
 import com.android.sample.list.abstraction.domain.MovieDetail
 import com.android.sample.list.abstraction.presentation.MovieCardEvent.RequestToReload
+import com.android.sample.list.abstraction.presentation.MovieCardEventMapper
 import com.android.sample.list.abstraction.presentation.MovieCardPresenter
 import com.android.sample.list.abstraction.presentation.MovieCardState.Error
 import com.android.sample.list.abstraction.presentation.MovieCardState.Initial
@@ -57,12 +57,16 @@ import com.android.sample.list.abstraction.presentation.MovieCardState.Success
 fun MovieCardScreen(parameter: MovieCardParameter, modifier: Modifier) {
     Box(modifier) {
         val component = rememberDaggerComponent { DaggerMovieCardComponent.builder().build() }
-        MovieCardScreen(parameter.toMovieDetail(),
-            assistedComposeViewModel("VM${parameter.imdbId}") { stateFactory ->
-                component.viewModelFactory.create(
-                    component.presenterFactory.create(parameter.imdbId, stateFactory)
-                )
-            })
+        val viewModel = assistedComposeViewModel("VM${parameter.imdbId}") { stateFactory ->
+            component.viewModelFactory.create(
+                component.presenterFactory.create(parameter.imdbId, stateFactory)
+            )
+        }
+        MovieCardScreen(
+            movieDetail = parameter.toMovieDetail(),
+            presenter = viewModel,
+            movieCardEventMapper = component.movieCardEventMapper
+        )
     }
 }
 
@@ -82,12 +86,14 @@ fun MovieCardScreen(parameter: MovieCardParameter, modifier: Modifier) {
 fun MovieCardScreen2(parameter: MovieCardParameter, modifier: Modifier) {
     Box(modifier) {
         val component = rememberDaggerComponent { DaggerMovieCardComponent.builder().build() }
-
+        val presenter = rememberPresenter("Presenter${parameter.imdbId}") {
+            component.presenterFactory.create(parameter.imdbId, InMemoryStateFactory)
+        }
         MovieCardScreen(
             movieDetail = parameter.toMovieDetail(),
-            presenter = rememberPresenter("Presenter${parameter.imdbId}") {
-                component.presenterFactory.create(parameter.imdbId, InMemoryStateFactory)
-            })
+            presenter = presenter,
+            movieCardEventMapper = component.movieCardEventMapper
+        )
     }
 }
 
@@ -110,13 +116,14 @@ private fun MovieCardParameter.toMovieDetail(): MovieDetail {
 @Composable
 fun MovieCardScreen(
     movieDetail: MovieDetail,
-    presenter: MovieCardPresenter
+    presenter: MovieCardPresenter,
+    movieCardEventMapper: MovieCardEventMapper
 ) {
     val state by presenter.state.collectAsStateWithLifecycle()
     var data by remember { mutableStateOf(movieDetail) }
     MovieCardContainer(data) {
         when (val s = state) {
-            is Error -> RetryButton { event -> presenter.onEvent(event) }
+            is Error -> RetryButton(movieCardEventMapper) { event -> presenter.onEvent(event) }
             is Initial -> Loading()
             is Loading -> Loading()
             is Success -> data = s.result
@@ -125,10 +132,10 @@ fun MovieCardScreen(
 }
 
 @Composable
-private fun RetryButton(onEvent: (RequestToReload) -> Unit) {
+private fun RetryButton(movieCardEventMapper: MovieCardEventMapper, onEvent: (RequestToReload) -> Unit) {
     Button(
         onClick = {
-            onEvent(ParcelableRequestToReload)
+            onEvent(movieCardEventMapper.requestToReload)
         }) {
         Text("Load extra info")
     }

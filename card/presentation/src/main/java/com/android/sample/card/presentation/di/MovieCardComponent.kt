@@ -5,6 +5,7 @@ import com.android.sample.card.presentation.MovieCardPresenterFactory
 import com.android.sample.card.presentation.MovieCardViewModelFactory
 import com.android.sample.core.di.component.DaggerComponent
 import com.android.sample.core.networking.di.NetworkingModule
+import com.android.sample.list.abstraction.presentation.MovieCardEventMapper
 import dagger.Component
 import javax.inject.Singleton
 
@@ -21,6 +22,8 @@ interface MovieCardComponent : DaggerComponent {
     val viewModelFactory: MovieCardViewModelFactory
 
     val presenterFactory: MovieCardPresenterFactory
+
+    val movieCardEventMapper : MovieCardEventMapper
 
     @Component.Builder
     interface Builder {
