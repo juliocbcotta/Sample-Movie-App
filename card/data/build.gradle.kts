@@ -14,8 +14,8 @@ android {
 dependencies {
 
     implementation("com.google.code.gson:gson:2.10.1")
-    implementation("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation("com.google.dagger:dagger:2.50")
-    ksp("com.google.dagger:dagger-compiler:2.50")
-    implementation(project(":card:abstraction"))
+    api("com.squareup.retrofit2:retrofit:2.11.0")
+    api("com.google.dagger:dagger:2.51.1")
+    ksp("com.google.dagger:dagger-compiler:2.51.1")
+    api(project(":card:abstraction"))
 }

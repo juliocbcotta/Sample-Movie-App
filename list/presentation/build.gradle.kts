@@ -10,16 +10,16 @@ android {
 
 dependencies {
 
-    implementation(project(":core:di"))
-    implementation(project(":core:networking"))
+    api(project(":core:di"))
+    api(project(":core:networking"))
     implementation(project(":core:coroutines"))
 
-    implementation(project(":list:data"))
-    implementation(project(":list:abstraction"))
+    api(project(":list:data"))
+    api(project(":list:abstraction"))
 
 
-    implementation("com.google.dagger:dagger:2.50")
-    ksp("com.google.dagger:dagger-compiler:2.50")
+    api("com.google.dagger:dagger:2.51.1")
+    ksp("com.google.dagger:dagger-compiler:2.51.1")
 
 
     implementation("androidx.lifecycle:lifecycle-viewmodel:2.7.0")

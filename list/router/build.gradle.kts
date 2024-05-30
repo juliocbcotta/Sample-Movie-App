@@ -8,5 +8,5 @@ android {
 
 dependencies {
 
-    implementation("com.veepee.vpcore.link-router:link-router:0.5.3")
+    api("com.veepee.vpcore.link-router:link-router:0.5.3")
 }

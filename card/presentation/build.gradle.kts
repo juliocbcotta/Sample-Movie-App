@@ -9,15 +9,15 @@ android {
 }
 
 dependencies {
-    implementation(project(":core:di"))
-    implementation(project(":core:networking"))
+    api(project(":core:di"))
+    api(project(":core:networking"))
     implementation(project(":core:coroutines"))
 
-    implementation(project(":card:data"))
-    implementation(project(":card:abstraction"))
+    api(project(":card:data"))
+    api(project(":card:abstraction"))
 
-    implementation("androidx.lifecycle:lifecycle-viewmodel:2.7.0")
+    api("androidx.lifecycle:lifecycle-viewmodel:2.8.1")
 
-    implementation("com.google.dagger:dagger:2.50")
-    ksp("com.google.dagger:dagger-compiler:2.50")
+    api("com.google.dagger:dagger:2.51.1")
+    ksp("com.google.dagger:dagger-compiler:2.51.1")
 }

@@ -10,29 +10,25 @@ android {
 
 dependencies {
 
-    implementation(project(":core:ui"))
     implementation(project(":core:di"))
     implementation(project(":core:networking"))
-    implementation(project(":core:coroutines"))
 
-    implementation(project(":search:router"))
+    api(project(":search:router"))
 
     implementation(project(":list:router"))
 
-    implementation("com.google.dagger:dagger:2.50")
-    ksp("com.google.dagger:dagger-compiler:2.50")
+    api("com.google.dagger:dagger:2.51.1")
+    ksp("com.google.dagger:dagger-compiler:2.51.1")
 
-    implementation("com.veepee.vpcore.link-router:link-router:0.5.3")
+    api("com.veepee.vpcore.link-router:link-router:0.5.3")
 
-    val composeBom = platform("androidx.compose:compose-bom:2023.10.01")
+    val composeBom = platform("androidx.compose:compose-bom:2024.05.00")
     implementation(composeBom)
 
     implementation("androidx.compose.ui:ui")
     implementation("androidx.compose.material3:material3")
-    implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.lifecycle:lifecycle-runtime-compose")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose")
-    implementation("androidx.compose.material:material-icons-extended")
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
 }

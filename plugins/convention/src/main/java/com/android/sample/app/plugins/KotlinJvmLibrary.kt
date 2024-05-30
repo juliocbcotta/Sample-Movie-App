@@ -13,12 +13,12 @@ class KotlinJvmLibrary : Plugin<Project> {
             pluginManager.apply("org.jetbrains.kotlin.jvm")
 
             tasks.withType<JavaCompile> {
-                sourceCompatibility = JavaVersion.VERSION_1_8.toString()
-                targetCompatibility = JavaVersion.VERSION_1_8.toString()
+                sourceCompatibility = JavaVersion.VERSION_17.toString()
+                targetCompatibility = JavaVersion.VERSION_17.toString()
             }
             tasks.withType<KotlinCompile>().all {
                 kotlinOptions {
-                    jvmTarget = "1.8"
+                    jvmTarget = "17"
 
                 }
             }

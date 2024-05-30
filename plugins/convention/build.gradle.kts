@@ -7,19 +7,19 @@ plugins {
 group = "com.sample.android.app.plugins"
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_17
-    targetCompatibility = JavaVersion.VERSION_17
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
 }
 tasks.withType<KotlinCompile>().configureEach {
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_17.toString()
+        jvmTarget = JavaVersion.VERSION_21.toString()
     }
 }
 
 dependencies {
-    compileOnly("org.jetbrains.kotlin:kotlin-gradle-plugin")
-    compileOnly(libs.android.gradlePlugin)
-    compileOnly(libs.ksp.gradlePlugin)
+    implementation("org.jetbrains.kotlin:kotlin-gradle-plugin")
+    implementation(libs.android.gradlePlugin)
+    implementation(libs.ksp.gradlePlugin)
 }
 
 tasks {

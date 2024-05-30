@@ -34,7 +34,7 @@ import com.veepee.vpcore.route.link.compose.ComposableFor
 data class MovieTag(val query: String)
 
 @Composable
-fun ListScreenContainer(modifier: Modifier, parameter: ListScreenParameter) {
+internal fun ListScreenContainer(modifier: Modifier, parameter: ListScreenParameter) {
     Box(modifier) {
         val component = rememberDaggerComponent { DaggerListComponent.builder().build() }
         ListScreen(parameter.toMovieTag(),

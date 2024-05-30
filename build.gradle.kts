@@ -4,16 +4,38 @@ plugins {
     alias(libs.plugins.android.library) apply false
     alias(libs.plugins.kagp) apply false
     alias(libs.plugins.ksp) apply false
+    id("com.autonomousapps.dependency-analysis") version "1.32.0"
 }
 
 subprojects {
     tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
         kotlinOptions {
-            jvmTarget = "1.8"
-            freeCompilerArgs += listOf(
-                "-P",
-                "plugin:androidx.compose.compiler.plugins.kotlin:suppressKotlinVersionCompatibilityCheck=true"
-            )
+            jvmTarget = "17"
+        }
+    }
+}
+dependencyAnalysis {
+    issues {
+        all {
+            onAny {
+                severity("fail")
+            }
+            onRuntimeOnly {
+                severity("ignore")
+            }
+            onIncorrectConfiguration {
+                exclude("org.jetbrains.kotlin:kotlin-stdlib")
+            }
+            onUnusedDependencies {
+                exclude("org.jetbrains.kotlin:kotlin-stdlib")
+            }
+            onUsedTransitiveDependencies {
+                severity("ignore")
+            }
+            onModuleStructure {
+                exclude(":card:data")
+                severity("ignore")
+            }
         }
     }
 }
