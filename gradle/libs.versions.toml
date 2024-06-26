@@ -19,14 +19,14 @@ retrofit = "2.11.0"
 compose= "1.6.8"
 material3 = "1.2.1"
 kover = "0.8.1"
-jacoco = "0.8.10"
+jacoco = "0.8.12"
 
 [libraries]
 android-desugarJdkLibs = { group = "com.android.tools", name = "desugar_jdk_libs", version.ref = "androidDesugarJdkLibs" }
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "androidxActivity" }
 androidx-compose-foundation = { group = "androidx.compose.foundation", name = "foundation", version.ref="compose" }
 androidx-compose-foundation-layout = { group = "androidx.compose.foundation", name = "foundation-layout", version.ref="compose" }
-androidx-compose-material-iconsExtended = { group = "androidx.compose.material", name = "material-icons-extended" , version.ref="material3"}
+androidx-compose-material-iconsExtended = { group = "androidx.compose.material", name = "material-icons-extended" , version.ref="compose"}
 androidx-compose-material3 = { group = "androidx.compose.material3", name = "material3", version.ref="material3" }
 androidx-compose-material3-windowSizeClass = { group = "androidx.compose.material3", name = "material3-window-size-class", version.ref="material3" }
 androidx-compose-runtime = { group = "androidx.compose.runtime", name = "runtime", version.ref="compose" }

@@ -5,17 +5,14 @@ import kotlinx.kover.gradle.plugin.dsl.KoverProjectExtension
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
-import org.gradle.kotlin.dsl.provideDelegate
 
 class KoverProjectPlugin : Plugin<Project> {
 
     override fun apply(project: Project) {
         with(project) {
             configureKoverInRootProject()
-            val coverageScope: String? by project
-            val scope = (coverageScope ?: ":")
             subprojects {
-                configureKoverInProject(scope)
+                configureKoverInProject()
             }
         }
     }
@@ -35,13 +32,9 @@ private fun Project.configureKoverInRootProject() {
     }
 }
 
-private fun Project.configureKoverInProject(scope: String) {
+private fun Project.configureKoverInProject() {
     pluginManager.withPlugin("org.jetbrains.kotlinx.kover") {
         configure<KoverProjectExtension> {
-            val shouldRunCoverage = path.contains(scope)
-            if (!shouldRunCoverage) {
-                disable()
-            }
             currentProject {
                 createVariant("Sample") {
                     add("debug", optional = true)
