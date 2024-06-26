@@ -20,6 +20,7 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-gradle-plugin")
     implementation(libs.android.gradlePlugin)
     implementation(libs.ksp.gradlePlugin)
+    implementation(libs.kover.gradlePlugin)
 }
 
 tasks {
@@ -46,6 +47,9 @@ gradlePlugin {
             implementationClass = "com.android.sample.app.plugins.KotlinJvmLibrary"
         }
 
-
+        register("KoverProjectPlugin") {
+            id = "com.sample.kover"
+            implementationClass = "com.android.sample.app.plugins.KoverProjectPlugin"
+        }
     }
 }
