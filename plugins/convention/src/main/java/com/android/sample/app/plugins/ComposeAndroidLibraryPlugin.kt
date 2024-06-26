@@ -11,13 +11,11 @@ class ComposeAndroidLibraryPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
             pluginManager.apply("com.android.library")
+            pluginManager.apply("org.jetbrains.kotlin.plugin.compose")
 
             with(extensions.getByType<LibraryExtension>()) {
                 buildFeatures {
                     compose = true
-                }
-                composeOptions {
-                    kotlinCompilerExtensionVersion = libs.findVersion("androidxComposeCompiler").get().toString()
                 }
             }
         }

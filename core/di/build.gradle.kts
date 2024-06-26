@@ -12,6 +12,6 @@ dependencies {
 
     api(project(":core:presentation"))
 
-    val lifecycle_version = "2.8.1"
+    val lifecycle_version = "2.8.2"
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:$lifecycle_version")
 }

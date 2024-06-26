@@ -1,40 +1,50 @@
 [versions]
 androidDesugarJdkLibs = "2.0.4"
 # AGP and tools should be updated together
-androidGradlePlugin = "8.4.1"
+androidGradlePlugin = "8.4.2"
 androidxActivity = "1.9.0"
 androidxAppCompat = "1.6.1"
-androidxComposeCompiler = "1.5.13-dev-k2.0.0-RC1-50f08dfa4b4"
 androidxCore = "1.13.1"
 androidxEspresso = "3.5.1"
-androidxLifecycle = "2.8.1"
+androidxLifecycle = "2.8.2"
 coil = "2.6.0"
-kotlin = "2.0.0-RC1"
+dagger = "2.51.1"
+daggerCompiler = "2.51.1"
+kotlin = "2.0.0"
 kotlinxCoroutines = "1.7.3"
-ksp = "2.0.0-RC1-1.0.20"
+ksp = "2.0.0-1.0.22"
+linkRouter = "0.5.3"
 okhttp = "4.12.0"
 retrofit = "2.11.0"
+compose= "1.6.8"
+material3 = "1.2.1"
 
 [libraries]
 android-desugarJdkLibs = { group = "com.android.tools", name = "desugar_jdk_libs", version.ref = "androidDesugarJdkLibs" }
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "androidxActivity" }
-androidx-compose-foundation = { group = "androidx.compose.foundation", name = "foundation" }
-androidx-compose-foundation-layout = { group = "androidx.compose.foundation", name = "foundation-layout" }
-androidx-compose-material-iconsExtended = { group = "androidx.compose.material", name = "material-icons-extended" }
-androidx-compose-material3 = { group = "androidx.compose.material3", name = "material3" }
-androidx-compose-material3-windowSizeClass = { group = "androidx.compose.material3", name = "material3-window-size-class" }
-androidx-compose-runtime = { group = "androidx.compose.runtime", name = "runtime" }
-androidx-compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
-androidx-compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
-androidx-compose-ui-util = { group = "androidx.compose.ui", name = "ui-util" }
+androidx-compose-foundation = { group = "androidx.compose.foundation", name = "foundation", version.ref="compose" }
+androidx-compose-foundation-layout = { group = "androidx.compose.foundation", name = "foundation-layout", version.ref="compose" }
+androidx-compose-material-iconsExtended = { group = "androidx.compose.material", name = "material-icons-extended" , version.ref="material3"}
+androidx-compose-material3 = { group = "androidx.compose.material3", name = "material3", version.ref="material3" }
+androidx-compose-material3-windowSizeClass = { group = "androidx.compose.material3", name = "material3-window-size-class", version.ref="material3" }
+androidx-compose-runtime = { group = "androidx.compose.runtime", name = "runtime", version.ref="compose" }
+androidx-compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling", version.ref="compose" }
+androidx-compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" , version.ref="compose"}
+androidx-compose-ui-util = { group = "androidx.compose.ui", name = "ui-util", version.ref="compose" }
+androidx-core = { module = "androidx.core:core", version.ref = "androidxCore" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "androidxCore" }
 androidx-lifecycle-runtimeCompose = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "androidxLifecycle" }
 androidx-lifecycle-viewModelCompose = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "androidxLifecycle" }
+androidx-ui = { module = "androidx.compose.ui:ui" , version.ref="compose"}
+androidx-ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest", version.ref="compose" }
 coil-kt = { group = "io.coil-kt", name = "coil", version.ref = "coil" }
 coil-kt-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil" }
 coil-kt-svg = { group = "io.coil-kt", name = "coil-svg", version.ref = "coil" }
+dagger = { module = "com.google.dagger:dagger", version.ref = "dagger" }
+dagger-compiler = { module = "com.google.dagger:dagger-compiler", version.ref = "daggerCompiler" }
 kotlin-stdlib = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib-jdk8", version.ref = "kotlin" }
 kotlinx-coroutines-guava = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-guava", version.ref = "kotlinxCoroutines" }
+link-router = { module = "com.veepee.vpcore.link-router:link-router", version.ref = "linkRouter" }
 okhttp-logging = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp" }
 retrofit-core = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
 
@@ -48,3 +58,4 @@ android-application = { id = "com.android.application", version.ref = "androidGr
 android-library = { id = "com.android.library", version.ref = "androidGradlePlugin" }
 kagp = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }

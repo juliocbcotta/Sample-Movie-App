@@ -16,7 +16,7 @@ dependencies {
     api(project(":card:data"))
     api(project(":card:abstraction"))
 
-    api("androidx.lifecycle:lifecycle-viewmodel:2.8.1")
+    api("androidx.lifecycle:lifecycle-viewmodel:2.8.2")
 
     api("com.google.dagger:dagger:2.51.1")
     ksp("com.google.dagger:dagger-compiler:2.51.1")

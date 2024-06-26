@@ -22,6 +22,6 @@ dependencies {
     ksp("com.google.dagger:dagger-compiler:2.51.1")
 
 
-    implementation("androidx.lifecycle:lifecycle-viewmodel:2.7.0")
+    implementation("androidx.lifecycle:lifecycle-viewmodel:2.8.2")
 
 }

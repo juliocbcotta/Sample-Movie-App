@@ -16,17 +16,14 @@ dependencies {
     implementation(project(":card:presentation"))
     api(project(":card:abstraction"))
 
-    implementation("io.coil-kt:coil-compose:2.6.0")
+    implementation(libs.coil.kt.compose)
 
-    api("com.veepee.vpcore.link-router:link-router:0.5.3")
+    api(libs.link.router)
 
-    val composeBom = platform("androidx.compose:compose-bom:2024.05.00")
-    implementation(composeBom)
-    androidTestImplementation(composeBom)
 
-    implementation("androidx.compose.ui:ui")
-    implementation("androidx.compose.material3:material3")
-    implementation("androidx.lifecycle:lifecycle-runtime-compose")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose")
-    debugImplementation("androidx.compose.ui:ui-tooling")
+    implementation(libs.androidx.ui)
+    implementation(libs.androidx.compose.material3)
+    implementation(libs.androidx.lifecycle.runtimeCompose)
+    implementation(libs.androidx.lifecycle.viewModelCompose)
+    debugImplementation(libs.androidx.compose.ui.tooling)
 }
