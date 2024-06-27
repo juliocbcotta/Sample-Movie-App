@@ -1,6 +1,5 @@
 package com.android.sample.app.plugins
 
-import com.android.sample.app.plugins.utils.libs
 import kotlinx.kover.gradle.plugin.dsl.KoverProjectExtension
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -21,7 +20,6 @@ class KoverProjectPlugin : Plugin<Project> {
 private fun Project.configureKoverInRootProject() {
     pluginManager.apply("org.jetbrains.kotlinx.kover")
     configure<KoverProjectExtension> {
-        useJacoco(libs.findVersion("jacoco").get().toString())
         merge.subprojects()
         configureReportsExclusions()
         currentProject {

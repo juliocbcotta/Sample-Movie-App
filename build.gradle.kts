@@ -16,6 +16,11 @@ subprojects {
         }
     }
 }
+tasks.register<Delete>("clean") {
+    delete(rootProject.layout.buildDirectory.get())
+    subprojects { delete(project.layout.buildDirectory.get()) }
+}
+
 dependencyAnalysis {
     issues {
         all {
